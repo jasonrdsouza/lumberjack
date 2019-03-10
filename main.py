@@ -13,9 +13,12 @@ def upload_blob(bucket_client, source_filename, destination_name):
 
 
 if __name__ == "__main__":
-    credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_FILE)
-    scoped_credentials = credentials.with_scopes(['https://www.googleapis.com/auth/devstorage.read_write'])
-    storage_client = storage.Client(project=PROJECT, credentials=scoped_credentials)
+    credentials = service_account.Credentials.from_service_account_file(
+        CREDENTIALS_FILE)
+    scoped_credentials = credentials.with_scopes(
+        ['https://www.googleapis.com/auth/devstorage.read_write'])
+    storage_client = storage.Client(
+        project=PROJECT, credentials=scoped_credentials)
     bucket_client = storage_client.bucket(BUCKET)
     upload_blob(bucket_client, TEST_FILE, "test/{}".format(TEST_FILE))
     print("Log upload complete")
